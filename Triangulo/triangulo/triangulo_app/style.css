@@ -1,0 +1,101 @@
+:root {
+  --fondo: #140e1a;
+  --superficie: #1e1428;
+  --superficie-2: #271a35;
+  --borde: #3d2860;
+  --texto: #f0deff;
+  --texto-suave: #9b82c0;
+  --acento: #ff9e2c;
+  --acento-2: #e040fb;
+  --error: #e8664f;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  background: var(--fondo);
+  color: var(--texto);
+}
+.app { display: flex; flex-direction: column; height: 100vh; }
+
+.barra {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 10px; padding: 10px 16px;
+  background: var(--superficie); border-bottom: 1px solid var(--borde);
+  flex-shrink: 0;
+}
+.marca { display: flex; align-items: center; gap: 10px; }
+.marca strong { display: block; font-size: 15px; }
+.marca small { color: var(--texto-suave); font-size: 12px; }
+.logo {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: grid; place-items: center;
+  background: var(--acento); color: var(--fondo); font-size: 18px; font-weight: bold;
+}
+.acciones-plano { display: flex; gap: 6px; flex-wrap: wrap; }
+.acciones-plano button {
+  background: var(--superficie-2); color: var(--texto);
+  border: 1px solid var(--borde); border-radius: 8px;
+  padding: 6px 12px; cursor: pointer; font-size: 13px;
+}
+.acciones-plano button:hover { border-color: var(--acento); }
+
+.cuerpo { display: flex; flex: 1; min-height: 0; }
+.lienzo-zona { flex: 1; position: relative; min-width: 0; }
+canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: default; display: block; }
+canvas.arrastrando { cursor: default; }
+.pie {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 6px 12px; background: rgba(30, 20, 40, 0.9);
+  border-top: 1px solid var(--borde); color: var(--texto-suave);
+  font-size: 11px; pointer-events: none; white-space: nowrap; overflow: hidden;
+}
+
+.panel {
+  width: clamp(300px, 32vw, 400px); flex-shrink: 0;
+  background: var(--superficie); border-left: 1px solid var(--borde);
+  padding: 14px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.bloque { background: var(--superficie-2); border: 1px solid var(--borde); border-radius: 12px; padding: 12px; }
+.bloque h3 {
+  margin: 0 0 10px; font-size: 12px; color: var(--acento);
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.filas { display: flex; flex-direction: column; gap: 8px; }
+.vertice { display: grid; grid-template-columns: 28px 1fr 1fr; gap: 8px; align-items: end; }
+.etiqueta {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center; font-weight: bold;
+  background: var(--fondo); color: var(--acento); border: 1px solid var(--borde);
+  margin-bottom: 2px;
+}
+.vertice label { display: flex; flex-direction: column; gap: 4px; color: var(--texto-suave); font-size: 12px; font-weight: 600; min-width: 0; }
+.vertice input {
+  width: 100%; min-width: 0; padding: 7px 6px; font-size: 15px; font-weight: bold;
+  text-align: center; background: var(--fondo); color: var(--texto);
+  border: 1px solid var(--borde); border-radius: 8px;
+}
+.vertice input:focus { outline: none; border-color: var(--acento); }
+
+.botones { display: flex; gap: 8px; margin-top: 12px; }
+.botones button { flex: 1; padding: 10px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 13px; }
+.primario { background: var(--acento); color: var(--fondo); }
+.secundario { background: transparent; color: var(--texto); border: 1px solid var(--borde) !important; }
+.error { color: var(--error); min-height: 16px; margin: 8px 0 0; font-size: 12px; }
+
+.datos { list-style: none; margin: 0; padding: 0; }
+.datos li {
+  display: flex; justify-content: space-between; gap: 8px;
+  padding: 6px 0; border-bottom: 1px dashed var(--borde); color: var(--texto-suave);
+}
+.datos li:last-child { border-bottom: none; }
+.datos b { color: var(--texto); font-variant-numeric: tabular-nums; }
+
+.tabla-bloque { display: flex; flex-direction: column; min-height: 180px; }
+.tabla-scroll { max-height: 260px; overflow-y: auto; border: 1px solid var(--borde); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 5px 6px; text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+th { position: sticky; top: 0; background: var(--superficie); color: var(--acento); }
+td { border-top: 1px solid var(--borde); }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triángulo Relleno · Línea DDA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="barra">
+    <div class="marca">
+      <span class="logo">△</span>
+      <div>
+        <strong>Triángulo Relleno</strong>
+        <small>Base: algoritmo DDA de línea</small>
+      </div>
+    </div>
+    <nav class="acciones-plano">
+      <button id="zoomMas" title="Acercar">+</button>
+      <button id="zoomMenos" title="Alejar">−</button>
+      <button id="centrar" title="Centrar figura">Centrar figura</button>
+    </nav>
+  </header>
+
+  <div class="cuerpo">
+
+    <main class="lienzo-zona">
+      <canvas id="lienzo"></canvas>
+      <div class="pie" id="pie">X = — &nbsp;&nbsp; Y = —</div>
+    </main>
+
+    <aside class="panel">
+
+      <section class="bloque">
+        <h3>Vértices</h3>
+        <div class="filas">
+          <div class="vertice">
+            <span class="etiqueta">A</span>
+            <label>X<input type="number" id="ax" placeholder="0"></label>
+            <label>Y<input type="number" id="ay" placeholder="0"></label>
+          </div>
+          <div class="vertice">
+            <span class="etiqueta">B</span>
+            <label>X<input type="number" id="bx" placeholder="0"></label>
+            <label>Y<input type="number" id="by" placeholder="0"></label>
+          </div>
+          <div class="vertice">
+            <span class="etiqueta">C</span>
+            <label>X<input type="number" id="cx" placeholder="0"></label>
+            <label>Y<input type="number" id="cy" placeholder="0"></label>
+          </div>
+        </div>
+        <div class="botones">
+          <button class="secundario" id="limpiar">Limpiar</button>
+          <button class="primario" id="calcular">Calcular</button>
+        </div>
+        <p class="error" id="error"></p>
+      </section>
+
+      <section class="bloque">
+        <h3>Resultado</h3>
+        <ul class="datos">
+          <li><span>Lado AB (puntos DDA)</span><b id="d-ab">—</b></li>
+          <li><span>Lado BC (puntos DDA)</span><b id="d-bc">—</b></li>
+          <li><span>Lado CA (puntos DDA)</span><b id="d-ca">—</b></li>
+          <li><span>Puntos del contorno</span><b id="d-borde">—</b></li>
+          <li><span>Filas rellenadas</span><b id="d-filas">—</b></li>
+          <li><span>Píxeles rellenados</span><b id="d-pix">—</b></li>
+          <li><span>Área (fórmula de Gauss)</span><b id="d-area">—</b></li>
+        </ul>
+      </section>
+
+      <section class="bloque tabla-bloque">
+        <h3>Puntos DDA de los lados</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Lado</th><th>#</th><th>X</th><th>Y</th></tr></thead>
+            <tbody id="tabla"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </aside>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
